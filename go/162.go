@@ -53,7 +53,7 @@ func findPeakElement(nums []int) int {
 		return nums[left] > nums[right]
 	}
 
-	//二分法，比较中值是否符合条件，不符合选取比中值大的一边继续迭代
+	//二分查找，比较中值是否符合条件，不符合选取比中值大的一边继续迭代
 	left, right := 0, n-1
 	for left <= right {
 		mid := (left + right) / 2
