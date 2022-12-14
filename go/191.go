@@ -60,19 +60,38 @@
 //leetcode submit region begin(Prohibit modification and deletion)
 package main
 
+//func hammingWeight(num uint32) int {
+//	count := 0
+//	for num > 0 {
+//		//n&(n-1)表示把二进制最低位的1变成0，循环此操作直到n=0，统计变换次数
+//		num &= num - 1
+//		count++
+//	}
+//	return count
+//}
+
 func hammingWeight(num uint32) int {
-	count := 0
-	for num > 0 {
-		//n&(n-1)表示把二进制最低位的1变成0，循环此操作直到n=0，统计变换次数
-		num &= num - 1
-		count++
+	n := num
+	//n & 0x55555555：只保留奇数位；(n >> 1) & 0x55555555：偶数位向后移一位跟奇数位对齐
+	n = (n & 0x55555555) + ((n >> 1) & 0x55555555)  //相邻1位相加，奇数位和偶数位相加
+	n = (n & 0x33333333) + ((n >> 2) & 0x33333333)  //每相邻2位相加
+	n = (n & 0x0f0f0f0f) + ((n >> 4) & 0x0f0f0f0f)  //每相邻4位相加
+	n = (n & 0x00ff00ff) + ((n >> 8) & 0x00ff00ff)  //每相邻8位相加
+	n = (n & 0x0000ffff) + ((n >> 16) & 0x0000ffff) //每相邻16位相加
+
+	return int(n)
+}
+
+func printBit(n uint32) {
+	for i := 31; i >= 0; i-- {
+		print((n >> i) & 1)
 	}
-	return count
+	println()
 }
 
 func main() {
-	println(hammingWeight(1))
-	println(hammingWeight(2))
+	println(hammingWeight(43261596))
+	println(hammingWeight(4294967293))
 }
 
 //leetcode submit region end(Prohibit modification and deletion)
