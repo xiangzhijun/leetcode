@@ -102,9 +102,9 @@ public class J142 {
         return fast;
     }
 
-//    public static class ListNode {
-//        int val;
-//        ListNode next;
-//    }
+    public static class ListNode {
+        int val;
+        ListNode next;
+    }
 }
 //leetcode submit region end(Prohibit modification and deletion)
